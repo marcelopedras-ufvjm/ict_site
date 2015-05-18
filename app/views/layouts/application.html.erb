@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<%= render "/refinery/html_tag" %>
+<% site_bar = render('/refinery/site_bar', :head => true) -%>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= render "/refinery/head" %>
+</head>
+<body class="container" id="<%= canonical_id @page %>">
+<%= site_bar -%>
+<div id="page_container">
+  <header id="header">
+    <%= render "/refinery/header" -%>
+  </header>
+  <section id="page">
+    <%= yield %>
+  </section>
+  <footer>
+    <%= render "/refinery/footer" -%>
+  </footer>
+</div>
+<%= render "/refinery/javascripts" %>
+<h1>Custom Template</h1>
+</body>
+</html>
