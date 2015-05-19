@@ -1,0 +1,9 @@
+<!--content original é essa primeira linha-->
+<%= render '/refinery/content_page' %>
+
+<% @items = Refinery::News::Item.latest(5) %>
+<%@items.each do |i| %>
+    <%= raw i.title %>
+    <%= raw i.content %>
+<%end%>
+<!--< %= render :partial => '/refinery/news/items/recent_posts' %>-->
