@@ -2,8 +2,45 @@
 <%= render '/refinery/content_page' %>
 
 <% @items = Refinery::News::Item.latest(5) %>
-<%@items.each do |i| %>
-    <%= raw i.title %>
-    <%= raw i.content %>
-<%end%>
+<!--< %@items.each do |i| %>-->
+<!--< %= raw i.title %>-->
+<!--< %= raw i.content %>-->
+<!--< %end%>-->
 <!--< %= render :partial => '/refinery/news/items/recent_posts' %>-->
+
+
+<div>
+  <div class="row">
+    <div class="col-md-9">
+      <div id="body">
+        <%= raw @page.content_for(:body) %>
+      </div>
+      <div id="side_body">
+        <%= raw @page.content_for(:side_body) %>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div id="news" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+          <% (0..@items.count).each do |n| %>
+              <%= raw "<li data-target=\"#news\" data-slide-to=\"#{n}\" class=\"#{n.zero? ? 'active' : ''}\"></li>" %>
+          <% end %>
+        </ol>
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+          <% @items.each.with_index do |n, i| %>
+              <%= raw "<div class=\"item #{i.zero? ? 'active' : ''}\"><div> <img class=\"img-responsive left\" src=\"assets/logo_ICT.jpg\"></div><div class=\"carousel-caption\"><h3>#{n.title}</h3><p>#{n.content}</p> </div></div>" %>
+          <% end %>
+        </div>
+        <!-- Controls -->
+        <a class="left carousel-control" href="#news" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+        <a class="right carousel-control" href="#news" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right"></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
