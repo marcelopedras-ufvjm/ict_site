@@ -1,6 +1,9 @@
 <!--content original é essa primeira linha-->
 <!--< %= render '/refinery/content_page' %>-->
 
+<!--< %= link_to image_tag("br.svg", :class => "country-flag"),refinery.url_for(:locale => :"pt-BR") %>-->
+<!--< %= link_to image_tag("us.svg", :class => "country-flag"),refinery.url_for(:locale => :en) %>-->
+
 <% @items = Refinery::News::Item.latest(5) %>
 <!--< %@items.each do |i| %>-->
 <!--< %= raw i.title %>-->

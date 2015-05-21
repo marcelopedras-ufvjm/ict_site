@@ -8,6 +8,7 @@ module Refinery
     class MenuPresenter
       include ActionView::Helpers::TagHelper
       include ActionView::Helpers::UrlHelper
+      include ActionView::Helpers::AssetTagHelper
       include ActiveSupport::Configurable
 
       config_accessor :roots, :menu_tag, :list_tag, :list_item_tag, :css, :dom_id,
@@ -49,7 +50,9 @@ module Refinery
       private
       def render_menu(items)
         content_tag(menu_tag, :id => dom_id, :class => css) do
-          render_menu_items(items)
+          buffer = render_menu_items(items)
+          buffer << menu_country_flags
+          buffer
         end
       end
 
@@ -141,6 +144,16 @@ module Refinery
 
       def within_max_depth?(menu_item)
         !max_depth || menu_item.depth < max_depth
+      end
+
+      # TODO @marcelo - aprender a usar helpers nos presenters
+      def menu_country_flags
+        # buffer = ActiveSupport::SafeBuffer.new
+        # buffer << link_to(image_tag("br.svg", :class => "country-flag"),ActionView::Helpers::UrlHelper.url_for(:locale => :"pt-BR"))
+        # buffer << link_to(image_tag("us.svg", :class => "country-flag"),ActionView::Helpers::UrlHelper.url_for(:locale => :en))
+        # buffer
+        #link_to(image_tag('assets/br.svg'), '#')
+        "country flag aqui"
       end
 
     end

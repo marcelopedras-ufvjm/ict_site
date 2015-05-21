@@ -2,7 +2,7 @@ $w : auto;
 $h : 400px;
 
 .background-news {
-  background-color: lightgrey;
+  background-color: darkseagreen;
 
   width: $w;
   height: $h;
@@ -17,4 +17,9 @@ $h : 400px;
 .resize-img img {
   width: 100%;
   height: auto;
+}
+
+.country-flag {
+  width: 20px;
+  height: 20px;
 }
