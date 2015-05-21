@@ -148,14 +148,12 @@ module Refinery
 
       # TODO @marcelo - aprender a usar helpers nos presenters
       def menu_country_flags
-        # buffer = ActiveSupport::SafeBuffer.new
-        # buffer << link_to(image_tag("br.svg", :class => "country-flag"),ActionView::Helpers::UrlHelper.url_for(:locale => :"pt-BR"))
-        # buffer << link_to(image_tag("us.svg", :class => "country-flag"),ActionView::Helpers::UrlHelper.url_for(:locale => :en))
-        # buffer
-        #link_to(image_tag('assets/br.svg'), '#')
-        "country flag aqui"
-      end
+         buffer = ActiveSupport::SafeBuffer.new
+         buffer << content_tag(:li,link_to(context.image_tag("br.svg", :class => "country-flag"),@context.refinery.url_for(:locale => :"pt-BR")))
+         buffer << content_tag(:li,link_to(context.image_tag("us.svg", :class => "country-flag"),@context.refinery.url_for(:locale => :en)))
+         content_tag(:ul,buffer)
 
+      end
     end
   end
 end
