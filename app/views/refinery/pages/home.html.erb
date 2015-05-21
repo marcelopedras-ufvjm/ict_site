@@ -1,5 +1,5 @@
 <!--content original é essa primeira linha-->
-<%= render '/refinery/content_page' %>
+<!--< %= render '/refinery/content_page' %>-->
 
 <% @items = Refinery::News::Item.latest(5) %>
 <!--< %@items.each do |i| %>-->
@@ -8,30 +8,42 @@
 <!--< %end%>-->
 <!--< %= render :partial => '/refinery/news/items/recent_posts' %>-->
 
-
-<div>
   <div class="row">
     <div class="col-md-9">
-      <div id="body">
-        <%= raw @page.content_for(:body) %>
-      </div>
-      <div id="side_body">
-        <%= raw @page.content_for(:side_body) %>
-      </div>
+      <%= render '/refinery/content_page' %>
+      <!--<div id="body">-->
+        <!--&lt;!&ndash;< %= raw @page.content_for(:body) %>&ndash;&gt;-->
+      <!--</div>-->
+      <!--<div id="side_body">-->
+        <!--&lt;!&ndash;< %= raw @page.content_for(:side_body) %>&ndash;&gt;-->
+      <!--</div>-->
     </div>
     <div class="col-md-3">
+      <h3>Notícias</h3>
       <div id="news" class="carousel slide" data-ride="carousel">
         <!-- Indicators -->
         <ol class="carousel-indicators">
-          <% (0..@items.count).each do |n| %>
+          <% (0...@items.count).each do |n| %>
               <%= raw "<li data-target=\"#news\" data-slide-to=\"#{n}\" class=\"#{n.zero? ? 'active' : ''}\"></li>" %>
           <% end %>
         </ol>
         <!-- Wrapper for slides -->
         <div class="carousel-inner">
           <% @items.each.with_index do |n, i| %>
-              <%= raw "<div class=\"item #{i.zero? ? 'active' : ''}\"><div> <img class=\"img-responsive left\" src=\"assets/logo_ICT.jpg\"></div><div class=\"carousel-caption\"><h3>#{n.title}</h3><p>#{n.content}</p> </div></div>" %>
+              <%= raw "
+              <div class=\"item #{i.zero? ? 'active' : ''}\">
+                <div class=\"background-news\"></div>
+                <div class=\"container\">
+                    <div class=\"carousel-caption resize-img \">
+                        <h3>#{n.title}</h3>
+                        <p>#{truncate  n.body, :length => 200, :omission => " ... #{link_to t('refinery.news.items.index.read_more'), refinery.news_item_path(n)}", :preserve_html_tags => true}</p>
+                    </div>
+                </div>
+              </div>" %>
           <% end %>
+
+
+
         </div>
         <!-- Controls -->
         <a class="left carousel-control" href="#news" data-slide="prev">
@@ -43,4 +55,3 @@
       </div>
     </div>
   </div>
-</div>
