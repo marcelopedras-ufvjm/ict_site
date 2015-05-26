@@ -19,7 +19,12 @@ $h : 400px;
   height: auto;
 }
 
-.country-flag {
-  width: 20px;
-  height: 20px;
+.btn-circle {
+  width: 26px;
+  height: 26px;
+  text-align: center;
+  padding: 1px 1px;
+  font-size: 12px;
+  line-height: 1.42;
+  border-radius: 20px;
 }
